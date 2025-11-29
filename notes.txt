@@ -1,0 +1,12 @@
+Commit 1 
+
+ install python 
+ python3 -m ensurepip --upgrade. // install pip in a Python environment.
+ python3 -m venv tutorial-env // create virtual eviroment
+ source tutorial-env/bin/activate //activate virtual eviroment
+ python -m pip install Django // install Django
+python -m django --version. // check that django installed
+
+// writing your first app 
+ mkdir djangotutorial //create folder
+ django-admin startproject mysite djangotutorial // start project in misite in folder djangotutorial
