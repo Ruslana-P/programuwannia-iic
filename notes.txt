@@ -39,3 +39,24 @@ python manage.py migrate	// Execute: Applies all unapplied migration files to th
 
  python manage.py shell //use this nstead of python because it automaticly imports models
  exit()
+
+
+------- Python shell interaction commands --------
+Question.objects.all()
+Question.objects.filter(id=1)
+Question.objects.filter(question_text__startswith="What")
+
+Get the question that was published this year.
+>>> from django.utils import timezone
+>>> current_year = timezone.now().year
+>>> Question.objects.get(pub_date__year=current_year)
+
+# Lookup by a primary key
+>>> Question.objects.get(pk=1)
+------------------------------------------
+
+
+
+python manage.py createsuperuser // create super user
+username - admin 
+password admin_password
