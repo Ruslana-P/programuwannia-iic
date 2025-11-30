@@ -60,3 +60,8 @@ Get the question that was published this year.
 python manage.py createsuperuser // create super user
 username - admin 
 password admin_password
+
+
+
+--- unit tests in python ----
+python manage.py test polls // run tests
