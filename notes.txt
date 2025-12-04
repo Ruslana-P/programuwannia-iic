@@ -65,3 +65,12 @@ password admin_password
 
 --- unit tests in python ----
 python manage.py test polls // run tests
+
+
+-- start app
+be in - /path/to/programuwannia-iic
+run - source tutorial-env/bin/activate
+
+go to 
+cd djangotutorial/
+python manage.py runserver
