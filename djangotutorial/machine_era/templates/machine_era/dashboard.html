@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Machine ERA :: Access Protocol</title>
+    {% load static %} 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'machine_era/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Bytesized&family=Permanent+Marker&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&family=Workbench&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <h1 class="protocol-header">
+        Welcome to machine era
+    </h1>
+
+    <div id="content" class="content-box">
+        <h3> _INIT. ACCESS. LEVEL: KNOWLEDGE_BASE_MODULES_ </h3>
+        <h3> _SELECT.MODULE.TO.INITIATE.PROCESS_ </h3>
+        
+        <hr class="divider">
+
+        {% for module in modules %}
+
+        {% if module.id == 1 %}
+            <a class="link" href="{% url 'machine_era:upload' %}" autofocus><span> [[ MODULE {{ module.id }} ]] → </span>{{ module.name }}</a>
+        {% else %}
+           <a class="link" href="{% url 'machine_era:upload' %}"><span> [[ MODULE {{ module.id }} ]] → </span>{{ module.name }}</a>
+        {% endif %}
+        {% endfor %}
+        
+        <hr class="divider">
+    </div>
+
+    <script src="{% static 'machine_era/matrix.js' %}"></script>
+</body>
+</html>

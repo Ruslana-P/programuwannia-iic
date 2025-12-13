@@ -69,8 +69,12 @@ python manage.py test polls // run tests
 
 -- start app
 be in - /path/to/programuwannia-iic
-run - source tutorial-env/bin/activate
+source tutorial-env/bin/activate
 
 go to 
 cd djangotutorial/
 python manage.py runserver
+
+
+---- debugging 
+python -m pip install django-debug-toolbar // install tool in active env 

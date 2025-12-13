@@ -1,0 +1,40 @@
+--- install required tools firts ---
+pip install pillow  // Для роботи з зображеннями в Django
+pip install tensorflow // Основна бібліотека ML
+pip install keras // Часто використовується як high-level API для Tens
+
+
+--- app creation and setting ---
+python manage.py startapp machine_era // create 
+in djangotutorial/mysite/settings.py // add newly created app and media url
+
+
+--- create model ---
+create ImageUpload  model in machine_era/models.py
+python manage.py makemigrations machine_era // create migration file
+python manage.py migrate // create table "machine_era_imageupload" in database (SQLite)
+
+
+--- integartion to admin panel ---
+in admin.py - admin.site.register(ImageUpload)
+hide custom templates from djangotutorial/templates as it did not work properly 
+
+--- AI model (VGG16) integration ---
+create djangotutorial/machine_era/ai_model.py
+download djangotutorial/vgg16_weights_tf_dim_ordering_tf_kernels.h5 
+dowload djangotutorial/machine_era/imagenet_class_index.json
+could nnot get it from internet. due to issue with keys, dowloaded manually and added to project
+
+
+--- web interface preparation ---
+// create templates
+create djangotutorial/machine_era/templates/machine_era/results.html
+create djangotutorial/machine_era/templates/machine_era/upload.html
+create djangotutorial/machine_era/templates/machine_era/dashboard.html
+
+create djangotutorial/machine_era/views.py // create views
+create djangotutorial/machine_era/urls.py // inside paths for app
+add path to machine_era in mysite/urls.py
+
+//add custom styles and js animation effects
+

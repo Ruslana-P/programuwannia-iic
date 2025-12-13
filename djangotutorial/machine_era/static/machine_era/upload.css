@@ -1,0 +1,45 @@
+#id_image {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1; 
+}
+
+.protocol-file-trigger {
+    cursor: pointer; 
+    padding: 5px;
+    display: inline-block;
+    border: 1px dashed var(--color-accent-neon);
+    margin-bottom: 10px;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.file-name-display {
+    color: white;
+    font-size: 1.1em;
+}
+
+#file-name {
+    color: white;
+    font-weight: bold;
+}
+
+.protocol-button {
+    color: var(--color-text-primary);
+    background-color: var(--color-content-bg);
+    border: 1px solid  var(--color-content-bg);
+    font-size: 16px;
+    padding: 5px;
+    width: 100%;
+    text-align: start;
+}
+
+.protocol-file-trigger:focus, 
+.protocol-button:focus {
+    outline: none; 
+    box-shadow: 0 0 10px var(--color-accent-neon); 
+    border: 1px solid  var(--color-text-primary);
+}
