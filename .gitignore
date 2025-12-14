@@ -16,3 +16,7 @@ local_settings.py
 
 # Logs
 *.log
+
+
+djangotutorial/yolov8n.pt
+djangotutorial/vgg16_weights_tf_dim_ordering_tf_kernels.h5
