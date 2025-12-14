@@ -21,12 +21,14 @@
 
     {% for upload in uploads %}
         <div class="result-item">
-            <div class="uploaded-item">
-                <img src="{{ upload.image.url }}" alt="Uploaded image">
+            <div class="uploaded-item-cnt">
+               <div class="uploaded-item">
+                    <img src="{{ upload.image.url }}" alt="Uploaded image">
+               </div>
             </div>
             <div class="result-text">
-                <p>Uploaded: {{ upload.uploaded_at|date:"Y-m-d H:i:s" }}</p>
-                <p><strong>Result AI:</strong> <span>{{ upload.classification_result }}</span></p>
+                <h4>[SESSION.ID: {{ upload.id }}] | UPLOADED: {{ upload.uploaded_at|date:"Y-m-d H:i:s" }}</h4>
+                <p><strong>ANALYSIS.OUTPUT:</strong> <span>{{ upload.classification_result }}</span></p>
             </div>
         </div>
         <hr class="divider">

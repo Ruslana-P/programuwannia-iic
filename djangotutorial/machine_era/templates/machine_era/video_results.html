@@ -24,20 +24,21 @@
         <hr class="divider">
 
         {% for upload in uploads %}
-            <div class="upload-item">
-                <h3>[SESSION.ID: {{ upload.id }}] | UPLOADED: {{ upload.uploaded_at|date:"Y-m-d H:i:s" }}</h3>
-                
-                <div class="video-display-container">
-                    <video controls class="analyzed-video">
-                        <source src="{{ upload.video_file.url }}" type="video/mp4">
-                        [ERROR: VIDEO FILE NOT SUPPORTED BY BROWSER]
-                    </video>
+            <div class="result-item">
+                <div class="uploaded-item-cnt"> 
+                    <div class="uploaded-item">
+                         <video controls class="analyzed-video">
+                           <source src="{{ upload.video_file.url }}" type="video/mp4">
+                          [ERROR: VIDEO FILE NOT SUPPORTED BY BROWSER]
+                         </video>
+                    </div>
                 </div>
-                
-                <p class="result-text">
-                    <strong><span class="neon-accent">SYSTEM.ANALYSIS.LOG:</span></strong> 
+               
+                <div class="result-text">
+                    <h4>[SESSION.ID: {{ upload.id }}] | UPLOADED: {{ upload.uploaded_at|date:"Y-m-d H:i:s" }}</h4>
+                    <strong><span class="neon-accent">ANALYSIS.OUTPUT:</span></strong> 
                     <span>{{ upload.analysis_result }}</span>
-                </p>
+                </div>
             </div>
             <hr class="divider">
         {% empty %}

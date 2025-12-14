@@ -1,5 +1,6 @@
 # Virtual Environment
 tutorial-env/
+ai-stable-env/
 venv/
 .venv/
 
@@ -8,7 +9,7 @@ venv/
 __pycache__/
 
 # User Media (where files uploaded by users will go)
-/media
+djangotutorial/media
 
 # Local Settings (often used to override settings without committing them)
 local_settings.py

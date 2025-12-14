@@ -1,5 +1,3 @@
-# djangotutorial/machine_era/urls.py
-
 from django.urls import path
 from . import views
 
@@ -16,5 +14,7 @@ urlpatterns = [
     path('video-scan/', views.upload_and_analyze_video, name='video_upload'),
     path('video-results/', views.video_analysis_results, name='video_results'),
 
-
+    # audio recognition module
+    path('audio_upload', views.upload_and_analyze_audio, name='audio_upload'),
+    path('audio_results', views.audio_analysis_results, name='audio_results'),
 ]
