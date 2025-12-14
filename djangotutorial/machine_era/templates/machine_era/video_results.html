@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Результати Відео Аналізу</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet"> 
+    
+    <link rel="stylesheet" href="{% static 'machine_era/style.css' %}">
+    <link rel="stylesheet" href="{% static 'machine_era/results.css' %}">
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <div id="content">
+        <h2>VIDEO.ANALYSIS.REPORT</h2>
+
+        <p><a href="{% url 'machine_era:video_upload' %}" class="link">
+            &lt; UPLOAD.NEW.VIDEO.FOR.ANALYSIS
+        </a></p>
+        
+        <hr class="divider">
+
+        {% for upload in uploads %}
+            <div class="upload-item">
+                <h3>[SESSION.ID: {{ upload.id }}] | UPLOADED: {{ upload.uploaded_at|date:"Y-m-d H:i:s" }}</h3>
+                
+                <div class="video-display-container">
+                    <video controls class="analyzed-video">
+                        <source src="{{ upload.video_file.url }}" type="video/mp4">
+                        [ERROR: VIDEO FILE NOT SUPPORTED BY BROWSER]
+                    </video>
+                </div>
+                
+                <p class="result-text">
+                    <strong><span class="neon-accent">SYSTEM.ANALYSIS.LOG:</span></strong> 
+                    <span>{{ upload.analysis_result }}</span>
+                </p>
+            </div>
+            <hr class="divider">
+        {% empty %}
+            <p>NO.VIDEO.FILES.PROCESSED.YET</p>
+        {% endfor %}
+    </div>
+    
+    <script src="{% static 'machine_era/matrix.js' %}"></script>
+</body>
+</html>

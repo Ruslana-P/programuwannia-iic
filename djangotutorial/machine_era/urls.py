@@ -3,19 +3,18 @@
 from django.urls import path
 from . import views
 
-# ВАЖЛИВО: Оновлюємо app_name на нову назву додатку
 app_name = 'machine_era' 
 
 urlpatterns = [
-    # 1. Головна Панель (Новий маршрут)
     path('', views.main_dashboard, name='dashboard'), 
     
-    # 2. Модуль Розпізнавання Зображення (Перейменований)
-    path('image-classify/', views.upload_and_classify_image, name='upload'), # Тепер це /machine-era/image-classify/
-    path('results/', views.classification_results, name='results'),
+    # image recognition module
+    path('image-upload/', views.upload_and_classify_image, name='image_upload'), # Тепер це /machine-era/image-classify/
+    path('image_results/', views.classification_results, name='image_results'),
     
-    # 3. Маршрути для майбутніх модулів (поки що не реалізовані)
-    path('video-scan/', views.main_dashboard, name='video_scan'),
-    path('audio-analyze/', views.main_dashboard, name='audio_analyze'),
-    # ...
+    # video recognition module
+    path('video-scan/', views.upload_and_analyze_video, name='video_upload'),
+    path('video-results/', views.video_analysis_results, name='video_results'),
+
+
 ]

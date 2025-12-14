@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Класифікація Зображень - Завантаження</title>
+    {% load static %} 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'machine_era/style.css' %}">
+    <link rel="stylesheet" href="{% static 'machine_era/upload.css' %}">
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <div id="content">
+        <h2>UPLOAD YOUR IMAGE HERE</h2>
+        <a class="link" href="{% url 'machine_era:dashboard' %}"> &lt; RETURN.TO.ROOT</a>
+        <hr class="divider">
+         <div class="form-container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+    
+            <div class="file-input-container">
+                {{ form.image }} 
+                <label for="id_image" class="protocol-file-trigger link" autofocus tabindex="0">
+                     > EXECUTE.FILE.SELECTION.PROTOCOL
+                </label>
+                <p class="file-name-display">
+                    _SELECTED.FILE: <span id="file-name">[...NO FILE SELECTED...]</span>
+                </p>
+            </div>
+    
+    <button type="submit" class="protocol-button">
+        > INITIATE_CLASSIFICATION (Execute)
+    </button>
+</form>
+        </div>
+        <hr class="divider">
+        <a class="link" href="{% url 'machine_era:image_results' %}"> > VIEW.LATEST.RESULTS</a>
+    </div>
+   
+    <script src="{% static 'machine_era/matrix.js' %}"></script>
+    <script src="{% static 'machine_era/file_handler.js' %}"></script>
+</body>
+</html>

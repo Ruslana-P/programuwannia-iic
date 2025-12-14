@@ -24,13 +24,12 @@
         
         <hr class="divider">
 
-        {% for module in modules %}
-
-        {% if module.id == 1 %}
-            <a class="link" href="{% url 'machine_era:upload' %}" autofocus><span> [[ MODULE {{ module.id }} ]] → </span>{{ module.name }}</a>
-        {% else %}
-           <a class="link" href="{% url 'machine_era:upload' %}"><span> [[ MODULE {{ module.id }} ]] → </span>{{ module.name }}</a>
-        {% endif %}
+     {% for module in modules %}
+            <a class="link" 
+               href="{% url 'machine_era:'|add:module.url_name %}" 
+               {% if module.id == 1 %}autofocus{% endif %}>
+                <span> [[ MODULE {{ module.id }} ]] → </span>{{ module.name }}
+            </a>
         {% endfor %}
         
         <hr class="divider">

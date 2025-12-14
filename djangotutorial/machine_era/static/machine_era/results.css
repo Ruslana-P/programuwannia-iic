@@ -12,5 +12,8 @@
         object-fit: contain;
         max-width: 200px;
     }
+}
 
+.result-text {
+    color: white;
 }

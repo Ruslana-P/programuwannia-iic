@@ -1,8 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const fileInput = document.getElementById('id_image');
+    let fileInput = document.getElementById('id_image');
+
+    if(!fileInput) {
+        fileInput = document.getElementById('id_video_file');
+    }
+
     const fileNameDisplay = document.getElementById('file-name');
     const fileTrigger = document.querySelector('.protocol-file-trigger'); 
 
+    // console.log("jhkvjfdhlk")
     if (fileInput && fileNameDisplay && fileTrigger) {
         fileTrigger.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {

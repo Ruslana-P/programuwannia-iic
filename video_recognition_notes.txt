@@ -1,0 +1,17 @@
+pip install opencv-python // instal tool for computer vision
+pip install ultralytics // libarry for recognising objects 
+
+add class VideoUpload in djangotutorial/machine_era/models.py
+add class VideoUploadForm in djangotutorial/machine_era/forms.py
+add new pathes inn djangotutorial/machine_era/urls.py
+add video analizing logic in djangotutorial/machine_era/ai_video_model.py
+add video analizing functions in djangotutorial/machine_era/views.py
+create templates for video - video_upload and video_results
+python manage.py makemigrations machine_era // migrate table
+python manage.py migrate
+
+
+
+Бібліотека YOLOv8n використовується для Виявлення Об'єктів (Object Detection).
+Основна функція: Швидка і точна ідентифікація де саме (тобто визначення обмежувальних рамок)
+та що саме (тобто класифікація) знаходиться в кадрі зображення або відеопотоку.
