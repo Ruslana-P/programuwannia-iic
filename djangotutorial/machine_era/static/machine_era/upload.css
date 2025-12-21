@@ -1,6 +1,7 @@
 #id_image, 
 #id_video_file,  
-#id_audio_file {
+#id_audio_file,
+#id_signal_file {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;

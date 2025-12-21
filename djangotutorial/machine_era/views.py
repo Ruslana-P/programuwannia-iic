@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import ImageUpload, VideoUpload, AudioUpload
+from .models import ImageUpload, VideoUpload, AudioUpload, SignalUpload
 from .ai_model import classify_image 
 import os
 from django.conf import settings
-from .forms import ImageUploadForm, VideoUploadForm, AudioUploadForm
+from .forms import ImageUploadForm, VideoUploadForm, AudioUploadForm, SignalUploadForm
 from .ai_video_model import analyze_video 
 from .ai_audio_model import analyze_audio
+from .ai_spectrum_model import analyze_signal_spectrum
 from django.core.files.storage import FileSystemStorage
 from .models import AudioUpload
 
@@ -16,10 +17,10 @@ def main_dashboard(request):
     modules = [
         {'id': 1, 'name': 'IMAGE RECOGNITION (Module Alpha)', 'url_name': 'image_upload'},       
         {'id': 2, 'name': 'VIDEO ELEMENT SCAN (Module Beta)', 'url_name': 'video_upload'}, 
-        {'id': 3, 'name': 'AUDIO SIGNATURE ANALYSIS (Module Gamma)', 'url_name': 'audio_upload'}, 
+        {'id': 3, 'name': 'AUDIO SIGNATURE ANALYSIS (Module Gamma)', 'url_name': 'audio_upload'},
+        {'id': 4, 'name': 'SIGNAL SPECTRUM DECODE (Module Delta)', 'url_name': 'signal_upload'},
 
         # Використовуємо 'dashboard' як заглушку для ще нереалізованих модулів, щоб уникнути помилок
-        {'id': 4, 'name': 'SIGNAL SPECTRUM DECODE (Module Delta)', 'url_name': 'dashboard'},  
         {'id': 5, 'name': 'CUSTOM AI VARIANT (Module Epsilon)', 'url_name': 'dashboard'},    
     ]
     
@@ -125,3 +126,33 @@ def audio_analysis_results(request):
     return render(request, 'machine_era/audio_result.html', {
         'audio_uploads': audio_uploads
     })
+
+
+def upload_and_analyze_signal(request):
+    """
+    Модуль Delta: завантаження сигналу та розшифровка спектру (FFT).
+    """
+    if request.method == 'POST':
+        form = SignalUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            instance: SignalUpload = form.save()
+            try:
+                result = analyze_signal_spectrum(instance.signal_file.path)
+                instance.spectrum_summary = result["summary"]
+                instance.save()
+            except Exception as exc:
+                instance.spectrum_summary = f"[SPECTRUM.ERROR] {exc.__class__.__name__}: {exc}"
+                instance.save()
+            return redirect('machine_era:signal_results')
+    else:
+        form = SignalUploadForm()
+
+    return render(request, 'machine_era/signal_upload.html', {'form': form})
+
+
+def signal_spectrum_results(request):
+    """
+    Відображає останні результати спектрального аналізу.
+    """
+    uploads = SignalUpload.objects.all().order_by('-uploaded_at')[:10]
+    return render(request, 'machine_era/signal_results.html', {'uploads': uploads})

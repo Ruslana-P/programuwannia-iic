@@ -27,3 +27,13 @@ class AudioUpload(models.Model):
 
     def __str__(self):
         return f"Audio: {self.audio_file.name}"
+
+
+class SignalUpload(models.Model):
+    """Зберігає сирий сигнал (аудіо або WAV/MP3) і результат спектрального аналізу."""
+    signal_file = models.FileField(upload_to='signal_uploads/')
+    spectrum_summary = models.TextField(blank=True, null=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"Signal #{self.id} at {self.uploaded_at.strftime('%Y-%m-%d %H:%M')}"
