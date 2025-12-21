@@ -17,4 +17,8 @@ urlpatterns = [
     # audio recognition module
     path('audio_upload', views.upload_and_analyze_audio, name='audio_upload'),
     path('audio_results', views.audio_analysis_results, name='audio_results'),
+
+     # signal spectrum module (Module Delta)
+    path('signal-upload/', views.upload_and_analyze_signal, name='signal_upload'),
+    path('signal-results/', views.signal_spectrum_results, name='signal_results'),
 ]

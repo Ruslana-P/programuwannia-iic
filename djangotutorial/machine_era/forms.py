@@ -1,5 +1,5 @@
 from django import forms
-from .models import ImageUpload, VideoUpload, AudioUpload
+from .models import ImageUpload, VideoUpload, AudioUpload, SignalUpload
 
 
 class ImageUploadForm(forms.ModelForm):
@@ -34,5 +34,17 @@ class AudioUploadForm(forms.ModelForm):
             'audio_file': forms.FileField.widget(attrs={
                 'class': 'protocol-file-input',
                 'accept': 'audio/*' 
+            }),
+        }
+
+
+class SignalUploadForm(forms.ModelForm):
+    class Meta:
+        model = SignalUpload
+        fields = ('signal_file',)
+        widgets = {
+            'signal_file': forms.FileField.widget(attrs={
+                'class': 'protocol-file-input',
+                'accept': 'audio/*',
             }),
         }
