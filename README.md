@@ -51,7 +51,7 @@ machine_era/
 2. **Video element scan (Module Beta)**  
 3. **Audio signature analysis (Module Gamma)**  
 4. **Signal spectrum decode (Module Delta)**
-5. **CUSTOM AI VARIANT (Module Epsilon)** – ще не реалізовано  
+5. **Text readability scan (Module Epsilon)** 
 
 Кожен модуль має власну форму для завантаження файлів і сторінку з результатами аналізу.
 
@@ -212,5 +212,26 @@ python manage.py runserver
 ```
 Open the application
 ```bash
-http://127.0.0.1:8000/machine_era/video-results/
+http://127.0.0.1:8000/machine_era
 ```
+
+## 🎥 Демонстрація роботи (Video Demo)
+
+У цьому розділі представлено відеоогляд роботи кожного модуля системи. Ви можете переглянути, як AI-моделі аналізують дані в реальному часі.
+
+### Module 1: Image recognition (Alpha)
+![Image recognition demo](recordings/image_demo.gif)
+
+### Module 2: Video element scan (Beta)
+![Video recognition demo](recordings/video_demo.gif)
+
+### Module 3: Audio signature analysis (Gamma)
+![Audio recognition demo](recordings/audio_demo.gif)
+
+### Module 4: Signal spectrum decode (Delta)
+
+
+### Module 5: Text readability scan (Epsilon)
+
+
+> **Примітка:** Якщо відео не відображається у вашому переглядачі, всі записи доступні у папці `/recordings`.
