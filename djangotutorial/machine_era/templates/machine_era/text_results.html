@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Analysis Results</title>
+    {% load static %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'machine_era/style.css' %}">
+    <link rel="stylesheet" href="{% static 'machine_era/results.css' %}">
+</head>
+<body>
+<canvas id="matrix-canvas"></canvas>
+<div id="content">
+    <h2>TEXT READABILITY REPORT LOG</h2>
+
+    <a class="link" autofocus href="{% url 'machine_era:text_upload' %}">
+        &lt; INITIATE.NEW.TEXT.SCAN
+    </a>
+    <hr class="divider">
+
+    {% for item in uploads %}
+    <div class="result-item">
+        <div class="uploaded-item-cnt">
+            <div class="uploaded-item">
+                <p>INPUT_SNIPPET: "{{ item.input_text|truncatechars:100 }}"</p>
+            </div>
+        </div>
+
+        <div class="result-text">
+            <h4>[SESSION.ID: {{ item.id }}] | CREATED: {{ item.created_at|date:"Y-m-d H:i:s" }}</h4>
+            <p>
+                <strong>READABILITY.SCORE:</strong>
+                <span>{{ item.readability_score }}</span>
+            </p>
+            <p>
+                <strong>VERDICT:</strong>
+                <span>{{ item.verdict }}</span>
+            </p>
+        </div>
+    </div>
+    <hr class="divider">
+    {% empty %}
+    <p>STATUS: NO.TEXT.DATA.FOUND. Please input text to start.</p>
+    {% endfor %}
+</div>
+
+<script src="{% static 'machine_era/matrix.js' %}"></script>
+</body>
+</html>

@@ -21,4 +21,8 @@ urlpatterns = [
      # signal spectrum module (Module Delta)
     path('signal-upload/', views.upload_and_analyze_signal, name='signal_upload'),
     path('signal-results/', views.signal_spectrum_results, name='signal_results'),
+
+    # text analysis module (Module Epsilon)
+    path('text-upload/', views.upload_and_analyze_text, name='text_upload'),
+    path('text-results/', views.text_analysis_results, name='text_results'),
 ]

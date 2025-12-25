@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('id_image') ||
         document.getElementById('id_video_file') ||
         document.getElementById('id_audio_file') ||
-        document.getElementById('id_signal_file');
+        document.getElementById('id_signal_file') ||
+        document.getElementById('id_input_file');
 
     const fileNameDisplay = document.getElementById('file-name');
     const fileTrigger = document.querySelector('.protocol-file-trigger'); 

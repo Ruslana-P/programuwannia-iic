@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import ImageUpload, VideoUpload, AudioUpload, SignalUpload
+from .models import ImageUpload, VideoUpload, AudioUpload, SignalUpload, TextUpload
 from .ai_model import classify_image 
 import os
 from django.conf import settings
-from .forms import ImageUploadForm, VideoUploadForm, AudioUploadForm, SignalUploadForm
+from .forms import ImageUploadForm, VideoUploadForm, AudioUploadForm, SignalUploadForm, TextUploadForm
 from .ai_video_model import analyze_video 
 from .ai_audio_model import analyze_audio
 from .ai_spectrum_model import analyze_signal_spectrum
+from .ai_text_model import analyze_readability
 from django.core.files.storage import FileSystemStorage
 from .models import AudioUpload
 
@@ -19,9 +20,7 @@ def main_dashboard(request):
         {'id': 2, 'name': 'VIDEO ELEMENT SCAN (Module Beta)', 'url_name': 'video_upload'}, 
         {'id': 3, 'name': 'AUDIO SIGNATURE ANALYSIS (Module Gamma)', 'url_name': 'audio_upload'},
         {'id': 4, 'name': 'SIGNAL SPECTRUM DECODE (Module Delta)', 'url_name': 'signal_upload'},
-
-        # Використовуємо 'dashboard' як заглушку для ще нереалізованих модулів, щоб уникнути помилок
-        {'id': 5, 'name': 'CUSTOM AI VARIANT (Module Epsilon)', 'url_name': 'dashboard'},    
+        {'id': 5, 'name': 'TEXT READABILITY SCAN (Module Epsilon)', 'url_name': 'text_upload'},
     ]
     
     context = {'modules': modules}
@@ -156,3 +155,36 @@ def signal_spectrum_results(request):
     """
     uploads = SignalUpload.objects.all().order_by('-uploaded_at')[:10]
     return render(request, 'machine_era/signal_results.html', {'uploads': uploads})
+
+
+# --- TEXT ANALYSIS ---
+def upload_and_analyze_text(request):
+    if request.method == 'POST':
+        form = TextUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+
+            uploaded_file = request.FILES.get('input_file')
+            if uploaded_file:
+                # читаємо файл як текст
+                content = uploaded_file.read().decode('utf-8', errors='ignore')
+                instance.input_text = content
+                # аналіз читабельності
+                score, verdict = analyze_readability(content)
+                instance.readability_score = score
+                instance.verdict = verdict
+                instance.save()
+                return redirect('machine_era:text_results')
+            else:
+                # якщо файл не вибрали
+                form.add_error('input_file', 'No file provided.')
+    else:
+        form = TextUploadForm()
+
+    return render(request, 'machine_era/text_upload.html', {'form': form})
+
+
+def text_analysis_results(request):
+    uploads = TextUpload.objects.all().order_by('-created_at')[:10]
+    return render(request, 'machine_era/text_results.html', {'uploads': uploads})
+

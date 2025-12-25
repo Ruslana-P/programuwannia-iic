@@ -37,3 +37,17 @@ class SignalUpload(models.Model):
 
     def __str__(self) -> str:
         return f"Signal #{self.id} at {self.uploaded_at.strftime('%Y-%m-%d %H:%M')}"
+
+
+class TextUpload(models.Model):
+    """Завантаження текстового файлу та аналіз читабельності."""
+    input_file = models.FileField(upload_to='text_uploads/', blank=True, null=True)
+    input_text = models.TextField(blank=True)
+    readability_score = models.FloatField(blank=True, null=True)
+    verdict = models.CharField(max_length=255, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"TextUpload #{self.id} ({self.verdict})"
+
+
