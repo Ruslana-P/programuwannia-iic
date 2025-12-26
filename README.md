@@ -232,6 +232,6 @@ http://127.0.0.1:8000/machine_era
 
 
 ### Module 5: Text readability scan (Epsilon)
-
+![Text recognition demo](recordings/text_demo.gif)
 
 > **Примітка:** Якщо відео не відображається у вашому переглядачі, всі записи доступні у папці `/recordings`.
