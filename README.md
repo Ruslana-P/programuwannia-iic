@@ -229,7 +229,7 @@ http://127.0.0.1:8000/machine_era
 ![Audio recognition demo](recordings/audio_demo.gif)
 
 ### Module 4: Signal spectrum decode (Delta)
-
+![Signal recognition demo](recordings/signal_demo.gif)
 
 ### Module 5: Text readability scan (Epsilon)
 ![Text recognition demo](recordings/text_demo.gif)
